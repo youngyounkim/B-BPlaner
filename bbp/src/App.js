@@ -5,6 +5,7 @@ function App() {
     <>
     <div className="App">test test2</div>
     <div className="App">Jecheon test3 :)</div>
+    <div>민석</div>
     </>
 
   )
