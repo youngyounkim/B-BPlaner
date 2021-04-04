@@ -3,7 +3,7 @@ import ReadTargetList from './ReadTargetList'
 // import AddTarget from './AddTarget'
 import loadingImg from '../images/loading.gif'
 import dummyData from '../data/targetData.json'
-
+import AddTarget from './AddTarget.js'
 
 
 function TargetList (props) {
@@ -19,8 +19,12 @@ function TargetList (props) {
             ? <div id = 'Loading'>
                 <img src={loadingImg}/>
             </div>
-            : <ReadTargetList id = 'ReadTargetList' target = {target} />}
-            {/* <AddTarget/> */}
+            : 
+            <div>
+                <ReadTargetList id = 'ReadTargetList' target = {target} />
+                {/* <AddTarget setTarget={setTarget}/>  */}
+              </div>
+            }
         </div>
     )
 }
