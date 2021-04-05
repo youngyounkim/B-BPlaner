@@ -1,8 +1,11 @@
-[
-    { 
+{
+    
+    "targetCnt": 3,
+    "target" :[{ 
         "id": 1,
         "name" : "리엑트 배우기",
         "color" : "red",
+        "activitiesCnt": 3,
         "activities" : [
             {
                 "id": 1,
@@ -18,7 +21,10 @@
         "id": 2,
         "name" : "바디 프로필 찍기",
         "color" : "yellow",
+        "activitiesCnt": 1,
         "activities" : []
-    }
-]
+    }]
+
+}
+    
     
