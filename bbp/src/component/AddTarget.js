@@ -28,5 +28,5 @@ function AddTarget( {setTarget} ) {
         </>
     )
 }
-
+// To solve detached HEAD issue
 export default AddTarget;
