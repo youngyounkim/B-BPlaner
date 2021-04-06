@@ -21,7 +21,7 @@ function AddTarget( {setTarget} ) {
     }
     return (
         <>
-            <input type="text" onChange={handleTargetName}>목표 이름을 작성해 주세요.</input>
+            <input type="text" onChange={handleTargetName} value = '목표 이름을 작성해 주세요.'></input>
             <hr></hr>
             <SketchPicker onChangeComplete={handleChangeColor}/>
             <button className="completedBtn" onClick={handleTarget}>완료</button>

@@ -3,7 +3,7 @@ import targetReducer from './targetReducer'
 
 
 const rootReducer = combineReducers({
-    targetReducer
+    target : targetReducer //<-- 명시적으로 키 값을 지정하였습니다.
 }) ; 
 
 export default rootReducer;

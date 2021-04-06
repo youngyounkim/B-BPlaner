@@ -1,17 +1,22 @@
 import React, { useEffect, useState , useMemo } from 'react';
 import ReadTargetList from './ReadTargetList'
-// import AddTarget from './AddTarget'
 import loadingImg from '../images/loading.gif'
-// import dummyData from '../data/targetData.json'
-import AddTarget from './AddTarget.js'
+import dummy from '../redux/dummy.json'
+import AddTarget from './AddTarget'
 
 
 function TargetList (props) {
-    const [target , setTarget] = useState(null)
+    const [target , setTarget] = useState(dummy.target)
 
+    console.log(target)
     // useEffect(()=>{
-    //     setTimeout(()=>setTarget(dummyData),3000)
+    //     setTimeout(()=>setTarget(dummy),3000)
     // })
+    const handleAddTarget = target => {
+        setTarget(state => [...state,target]
+        )
+    }
+
 
     return (
         <div id = 'TargetList'>
@@ -22,7 +27,7 @@ function TargetList (props) {
             : 
             <div>
                 <ReadTargetList id = 'ReadTargetList' target = {target} />
-                {/* <AddTarget setTarget={setTarget}/>  */}
+                <AddTarget setTarget={handleAddTarget}/> 
               </div>
             }
         </div>
