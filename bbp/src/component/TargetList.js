@@ -6,17 +6,13 @@ import AddTarget from './AddTarget'
 
 
 function TargetList (props) {
-    const [target , setTarget] = useState(dummy.target)
+    const [target ,] = useState(dummy.target) // redux로 옮겨가며 이후 지울 예정
 
     console.log(target)
     // useEffect(()=>{
     //     setTimeout(()=>setTarget(dummy),3000)
     // })
-    const handleAddTarget = target => {
-        setTarget(state => [...state,target]
-        )
-    }
-
+    
 
     return (
         <div id = 'TargetList'>
@@ -26,7 +22,7 @@ function TargetList (props) {
             </div>
             : 
             <div>
-                <ReadTargetList id = 'ReadTargetList' target = {target} />
+                <ReadTargetList id = 'ReadTargetList' target = {target} /> {/* 이후 target prop은 제거 예정. */}
                 <AddTarget /> 
               </div>
             }

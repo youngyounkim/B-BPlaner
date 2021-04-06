@@ -12,7 +12,6 @@ function AddTarget() {
     const [targetName, setTargetName] = useState(null);
     const [targetColor, setTargetColor] = useState(null);
     
-
     const handleTargetName = function (e) {
         setTargetName(e.target.value);
     }
@@ -23,7 +22,7 @@ function AddTarget() {
         dispatch(addTarget(state.targetCnt, targetName, targetColor))
     }
     return (
-        <>
+        <>                                                  {/* 렌더링을 위해 수정하였습니다! - 민석*/}
             <input type="text" onChange={handleTargetName} value = '목표 이름을 작성해 주세요.'></input>
             <hr></hr>
             <SketchPicker onChangeComplete={handleChangeColor}/>
