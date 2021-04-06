@@ -27,7 +27,7 @@ function TargetList (props) {
             : 
             <div>
                 <ReadTargetList id = 'ReadTargetList' target = {target} />
-                <AddTarget setTarget={handleAddTarget}/> 
+                <AddTarget /> 
               </div>
             }
         </div>
