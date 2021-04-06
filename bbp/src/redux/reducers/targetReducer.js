@@ -6,8 +6,8 @@ const targetReducer = (state = dummy ,action) => {
 
     switch ( action.type ) {
         case ADD_TARGET :
-            state.stargetCnt++ 
             return Object.assign({}, state, {
+                targetCnt: state.targetCnt + 1,
                 target: [...state.target, action.payload]
             });
         default:
