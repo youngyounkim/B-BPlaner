@@ -13,3 +13,21 @@ export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]
         }
     }
 }
+
+
+
+
+// 현재 자료 구조가 객체 => 배열 -> 객체 식이기 때문에  deepcopy를 위한 함수 입니다.
+// 현재는 지금의 dummy data에만 해당됩니다.
+const deepCopy = (arr) => {
+
+    return  arr.target.reduce((acc, cur)=>{
+
+        let new_act = cur.activities.reduce((acc,cur)=> {   
+            return [...acc,Object.assign({},cur)]
+        },[])
+
+        return [...acc, Object.assign({}, cur, {activities: new_act})]
+    },[])
+}
+
