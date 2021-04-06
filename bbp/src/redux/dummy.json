@@ -2,23 +2,23 @@
     
     "targetCnt": 3,
     "target" :[{ 
-        "id": 1,
+        "id": "T1",
         "name" : "리엑트 배우기",
         "color" : "red",
         "activitiesCnt": 3,
         "activities" : [
             {
-                "id": 1,
+                "id": "A1",
                 "name" : "리엑트 훅스 배우기"
             },
             {
-                "id": 2,
+                "id": "A2",
                 "name" : "리덕스 배우기"
             }
         ]
     },
     {
-        "id": 2,
+        "id": "T2",
         "name" : "바디 프로필 찍기",
         "color" : "yellow",
         "activitiesCnt": 1,
