@@ -1,4 +1,5 @@
 export const ADD_TARGET = "ADD_TARGET" ;
+export const ADD_ACTIVITY = "ADD_ACTIVITY";
 
 
 export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]) => {
@@ -10,6 +11,16 @@ export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]
             color: color,
             activitiesCnt: activitiesCnt,
             activities: activities
+        }
+    }
+}
+
+export const addActivity = (id, name) => {
+    return {
+        type : ADD_ACTIVITY,
+        payload : {
+            id: id,
+            name: name
         }
     }
 }
