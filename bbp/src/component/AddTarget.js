@@ -11,7 +11,7 @@ import reactCSS from 'reactcss'
 
 function AddTarget() {
     const state = useSelector(state => {
-        console.log('state: ', state)
+        console.log('state in AddTarget: ', state)
         return state.targetReducer})
     const dispatch = useDispatch();
     
@@ -23,7 +23,9 @@ function AddTarget() {
         b: '19',
         a: '1',
       });
-    
+    const handleTarget = function () {
+      dispatch(addTarget(state.targetCnt, targetName, `rgba(${ targetColor.r }, ${ targetColor.g }, ${ targetColor.b }, ${ targetColor.a })`))
+    }
     const handleTargetName = function (e) {
         setTargetName(e.target.value);
     }
@@ -31,9 +33,7 @@ function AddTarget() {
         setTargetColor(color.rgb)
         console.log('color:',color.rgb)
     }
-    const handleTarget = function () {
-        dispatch(addTarget(state.targetCnt, targetName, targetColor))
-    }
+
     const handleColorPicker = function () {
         setDisplayColorPicker(!displayColorPicker);
     }
