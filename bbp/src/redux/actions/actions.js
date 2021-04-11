@@ -6,7 +6,7 @@ export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]
     return {
         type: ADD_TARGET,
         payload: {
-            id: `T${targetCnt}`, // target.id 형식은 T1, T2, T3, ...
+            id: targetCnt, // target.id 형식도 1, 2 ,3, ... 그대로 따름.
             name: name,
             color: color,
             activitiesCnt: activitiesCnt,
