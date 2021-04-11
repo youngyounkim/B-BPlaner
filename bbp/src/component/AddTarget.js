@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
 // import { SketchPicker } from 'react-color'
-import { BlockPicker } from 'react-color'
+import { SketchPicker } from 'react-color'
 // import { CirclePicker} from 'react-color'
 import { useSelector, useDispatch } from 'react-redux';
 import { addTarget } from '../redux/actions/actions';
-import reactCSS from 'reactcss'
+import reactCSS from 'reactcss';
+
 
 // 목표이름과 목표칼라 자체는 AddTarget Component에서만 관리하는 State로 설정
 // target 이라는 객체형 State에 목표이름과 목표칼라로 setState 해줌.
+var inputStyles = {
+  input: {
+    border: '1px',
+  },
+  label: {
+    fontSize: '12px',
+    color: '#999',
+  },
+};
 
 function AddTarget() {
     const state = useSelector(state => {
@@ -23,7 +33,8 @@ function AddTarget() {
         b: '19',
         a: '1',
       });
-    const handleTarget = function () {
+    const handleTarget = function (e) {
+      e.preventDefault();
       dispatch(addTarget(state.targetCnt, targetName, `rgba(${ targetColor.r }, ${ targetColor.g }, ${ targetColor.b }, ${ targetColor.a })`))
     }
     const handleTargetName = function (e) {
@@ -92,9 +103,9 @@ function AddTarget() {
       });
 // 
     return (
-        <div className="addTarget"  style={ styles.sectionBackground}>                                                 
+        <div type='submit' className="addTarget"  style={ styles.sectionBackground}>                                                 
             <input type="text"  onChange={handleTargetName}  style={styles.inputName} placeholder="   목표를 입력해 주세요."></input>
-            <hr></hr>
+            <hr />
             <div className="colorAndBtn" style={ styles.colorAndBtn}>
                 <div style={ styles.swatch } onClick={ handleColorPicker }>
                     <div style={ styles.color } />
@@ -102,7 +113,7 @@ function AddTarget() {
                 {displayColorPicker ? 
                 <div style={ styles.popover }>
                     <div style={ styles.cover } onClick={ handleClose } />
-                    <BlockPicker color={ targetColor } onChange={ handleChangeColor } />
+                    <SketchPicker color={targetColor} onChangeComplete={ handleChangeColor } />
                 </div> : null}
                 <button className="completedBtn" style={ styles.completeBtn } onClick={handleTarget}>완료</button>
             </div>
