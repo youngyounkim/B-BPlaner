@@ -1,14 +1,16 @@
 import React from "react";
-
-function ReadTargetEntry({ target }) {
+// Props 받는 부분 수정함 - 제천
+function ReadTargetEntry({ name, color, activities }) {
   return (
     <div className="readTargetEntry">
       <div className="mainEntry">
-        <div className="mainEntryName">{target.name}</div>
-        <div className="mainEntryColor">{target.color}</div>
+        <div className="mainEntryName">{name}</div>
+        <div className="mainEntryColor">{color}</div>
       </div>
       <div className="subEntry">
-        <div className="activitesName">{target.activities.name}</div>
+        {activities.map(el => {
+          return <div className="activitesName">{el.name}</div>
+        })}
       </div>
     </div>
   );
