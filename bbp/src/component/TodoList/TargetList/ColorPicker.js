@@ -1,16 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
 import { CirclePicker} from 'react-color'
 import { useSelector, useDispatch } from "react-redux";
+import { changeTargetColor } from "../../../redux/actions/actions";
 
-function ColorPicker ( {targetColor, handleChangeColor, swatchStyle, colorStyle, popoverStyle}) {
+function ColorPicker ( {targetColor, handleChangeColor, swatchStyle, colorStyle, popoverStyle, callFrom, id} ) {
     const state = useSelector((state) => {
         return state.targetReducer;
     });
-
+    const dispatch = useDispatch();
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
 
     const handleColorPicker = function () {
+      if(callFrom === 'ReadTargetEntry' && displayColorPicker === true) {
+        dispatch(changeTargetColor(id, targetColor))
+      }
         setDisplayColorPicker(!displayColorPicker);
     };
 

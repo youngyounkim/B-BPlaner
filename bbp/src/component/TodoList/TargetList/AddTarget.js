@@ -1,14 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-// import { SketchPicker } from 'react-color'
-// import { BlockPicker } from "react-color";
-import { CirclePicker} from 'react-color'
 import { useSelector, useDispatch } from "react-redux";
 import { addTarget } from "../../../redux/actions/actions";
 import reactCSS from "reactcss";
 import ColorPicker from './ColorPicker';
-
-// 목표이름과 목표칼라 자체는 AddTarget Component에서만 관리하는 State로 설정
-// target 이라는 객체형 State에 목표이름과 목표칼라로 setState 해줌.
 
 function AddTarget() {
   const state = useSelector((state) => {
@@ -18,7 +12,7 @@ function AddTarget() {
   const targetInput = useRef(); // 목표 입력 부분을 DOM없이 늘 선택하기 위한 변수
 
   const [targetName, setTargetName] = useState(null);
-  // const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  
   const [targetColor, setTargetColor] = useState({
     r: "241",
     g: "112",
@@ -45,9 +39,7 @@ function AddTarget() {
     targetInput.current.focus();
   };
 
-  // const handleColorPicker = function () {
-  //   setDisplayColorPicker(!displayColorPicker);
-  // };
+  // swatch, color, popover 는 ColorPicker props로 넘겨줘야 하므로 필요. 나머지는 css파일로 이관 가능. 
   const styles = reactCSS({
     default: {
       color: {
@@ -106,15 +98,7 @@ function AddTarget() {
       ></input>
       <hr></hr>
       <div className="colorAndBtn" style={styles.colorAndBtn}>
-        {/* <div style={styles.swatch} onClick={handleColorPicker}>
-          <div style={styles.color} />
-        </div>
-        {displayColorPicker ? (
-          <div style={styles.popover}>
-            <CirclePicker color={targetColor} onChangeComplete={handleChangeColor} />
-          </div>
-        ) : null} */}
-        <ColorPicker targetColor={targetColor} swatchStyle={styles.swatch} colorStyle={styles.color} popoverStyle={styles.popover} cursorPosition={targetInput} handleChangeColor={handleChangeColor}/>
+        <ColorPicker targetColor={targetColor} swatchStyle={styles.swatch} colorStyle={styles.color} popoverStyle={styles.popover} cursorPosition={targetInput} handleChangeColor={handleChangeColor} />
         <input type="submit" value="완  료"
           className="completedBtn"
           style={styles.completeBtn}

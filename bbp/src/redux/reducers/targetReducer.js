@@ -1,4 +1,5 @@
 import dummy from "../dummy.json"
+import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR } from "../actions/actions"
 import { ADD_TARGET, ADD_ACTIVITY, DELETE_ACTIVITY } from "../actions/actions"
 
 
@@ -35,6 +36,14 @@ const targetReducer = (state = dummy ,action) => {
                 } 
                 return el;
             })]}
+
+        case CHANGE_TARGET_COLOR :
+            let idx = state.target.findIndex(el => el.id === action.payload.id)
+            let copiedTargets = state.target.slice(0);
+            copiedTargets[idx].color =  action.payload.color;
+            return Object.assign({}, state, {
+                target: copiedTargets
+            });
         default:
             return state
     }
