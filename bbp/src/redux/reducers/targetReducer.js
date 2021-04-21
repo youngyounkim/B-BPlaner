@@ -23,29 +23,20 @@ const targetReducer = (state = dummy ,action) => {
             return obj
 
         case CHANGE_ACTIVITY_NAME :
-            
             const { targetId, activityId, inputValue } = action.payload
-
-            const targetIdx = state.target.findIndex(target => target.id === targetId)
-            const activityIdx = state.target[targetIdx].activities.findIndex(activity => activity.id === activityId)
-            
             return {
                 ...state,
-                target : [
-                    ...state.target.slice(0,targetIdx),
-                    {
-                        ...state.target[targetIdx],
-                        activities : [
-                            ...state.target[targetIdx].activities.slice(0, activityIdx),
-                            {
-                                ...state.target[targetIdx].activities[activityIdx],
-                                name : inputValue
-                            },
-                            ...state.target[targetIdx].activities.slice(activityIdx + 1)
-                        ]
-                    },
-                    ...state.target.slice(targetIdx + 1)
-                ]
+                target : state.target.map(target => { 
+                    if(target.id === targetId){
+                        target.activities = target.activities.map(activity => {
+                            if(activity.id === activityId){
+                                activity = { ...activity, name : inputValue }
+                            } 
+                            return activity
+                        })
+                    } 
+                    return target    
+                })
             }
 
         case DELETE_ACTIVITY : 

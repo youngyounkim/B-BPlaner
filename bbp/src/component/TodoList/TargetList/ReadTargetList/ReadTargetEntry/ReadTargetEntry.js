@@ -9,10 +9,10 @@ function ReadTargetEntry({ name, color, activities }) {
         <div className="mainEntryColor">{color}</div>
       </div>
       <div className="subEntry">
-        {/* {<ReadActivityList id = {1}/>} 실험하기 위해서 잠깐 틀었습니다~ 민석*/}
-        {activities.map((el) => {
+        {<ReadActivityList id = {1}/>}
+        {/* {activities.map((el) => {
           return <div className="activitesName">{el.name}</div>;
-        })}
+        })} */}
       </div>
     </div>
   );
