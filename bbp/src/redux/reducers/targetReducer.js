@@ -1,5 +1,5 @@
 import dummy from "../dummy.json"
-import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR, CHANGE_ACTIVITY_NAME } from "../actions/actions"
+import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR, DELETE_ACTIVITY, CHANGE_ACTIVITY_NAME } from "../actions/actions"
 
 
 const targetReducer = (state = dummy ,action) => {
@@ -48,6 +48,20 @@ const targetReducer = (state = dummy ,action) => {
                 ]
             }
 
+        case DELETE_ACTIVITY : 
+            return {...state, target : [...state.target.map((el)=>{
+                if(el.id === action.payload.targetId){
+                    el.activities = el.activities.filter((el)=>{
+                        if(el.id === action.payload.id){
+                            return false
+                        } else {
+                            return true;
+                        }
+                    })
+                    return el;
+                } 
+                return el;
+            })]}
 
         case CHANGE_TARGET_COLOR :
             let idx = state.target.findIndex(el => el.id === action.payload.id)
@@ -56,7 +70,6 @@ const targetReducer = (state = dummy ,action) => {
             return Object.assign({}, state, {
                 target: copiedTargets
             });
-                break;
         default:
             return state
     }
