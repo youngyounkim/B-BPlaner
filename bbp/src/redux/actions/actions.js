@@ -1,6 +1,6 @@
 export const ADD_TARGET = "ADD_TARGET" ;
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
-
+export const DELETE_ACTIVITY = "DELETE_ACTIVITY"
 
 export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]) => {
     return {
@@ -21,6 +21,16 @@ export const addActivity = (id, name) => {
         payload : {
             id: id,
             name: name
+        }
+    }
+}
+
+export const deleteActivity = (targetId, id) =>{
+    return {
+        type : DELETE_ACTIVITY,
+        payload : {
+            targetId : targetId,
+            id : id
         }
     }
 }

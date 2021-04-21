@@ -1,5 +1,5 @@
 import dummy from "../dummy.json"
-import { ADD_TARGET, ADD_ACTIVITY } from "../actions/actions"
+import { ADD_TARGET, ADD_ACTIVITY, DELETE_ACTIVITY } from "../actions/actions"
 
 
 const targetReducer = (state = dummy ,action) => {
@@ -20,6 +20,21 @@ const targetReducer = (state = dummy ,action) => {
                 return el;
             })]}
             return obj
+
+        case DELETE_ACTIVITY : 
+            return {...state, target : [...state.target.map((el)=>{
+                if(el.id === action.payload.targetId){
+                    el.activities = el.activities.filter((el)=>{
+                        if(el.id === action.payload.id){
+                            return false
+                        } else {
+                            return true;
+                        }
+                    })
+                    return el;
+                } 
+                return el;
+            })]}
         default:
             return state
     }
