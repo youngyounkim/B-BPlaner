@@ -1,6 +1,5 @@
 import dummy from "../dummy.json"
-import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR } from "../actions/actions"
-import { ADD_TARGET, ADD_ACTIVITY, DELETE_ACTIVITY } from "../actions/actions"
+import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR, DELETE_ACTIVITY } from "../actions/actions"
 
 
 const targetReducer = (state = dummy ,action) => {
