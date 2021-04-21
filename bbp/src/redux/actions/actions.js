@@ -1,5 +1,6 @@
 export const ADD_TARGET = "ADD_TARGET" ;
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
+export const CHANGE_ACTIVITY_NAME = "CHANGE_ACTIVITY_NAME"
 export const CHANGE_TARGET_COLOR = "CHANGE_TARGET_COLOR"; // ReadTargetEntry 에서 목표색 바꿈기능 - 제천
 
 
@@ -22,6 +23,17 @@ export const addActivity = (id, name) => {
         payload : {
             id: id,
             name: name
+        }
+    }
+}
+
+export const changeActivityName = (targetId, activityId, inputValue) => {
+    return {
+        type : CHANGE_ACTIVITY_NAME,
+        payload : {
+            targetId,
+            activityId,
+            inputValue
         }
     }
 }
