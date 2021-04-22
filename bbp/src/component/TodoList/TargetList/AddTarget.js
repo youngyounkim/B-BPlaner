@@ -13,19 +13,15 @@ function AddTarget() {
 
   const [targetName, setTargetName] = useState(null);
   
-  const [targetColor, setTargetColor] = useState({
-    r: "241",
-    g: "112",
-    b: "19",
-    a: "1",
-  });
+  const [targetColor, setTargetColor] = useState('#ff8a65');
   const handleTarget = function (e) {
     e.preventDefault();
+    console.log('targetColor in AddTarget: ',targetColor)
     dispatch(
       addTarget( 
         state.targetCnt,
         targetName,
-        `rgba(${targetColor.r}, ${targetColor.g}, ${targetColor.b}, ${targetColor.a})`
+        targetColor
       )
     );
     targetInput.current.value = '';
@@ -35,7 +31,7 @@ function AddTarget() {
     setTargetName(e.target.value);
   };
   const handleChangeColor = function (color) {
-    setTargetColor(color.rgb);
+    setTargetColor(color.hex);
     targetInput.current.focus();
   };
 
@@ -46,7 +42,7 @@ function AddTarget() {
         width: "100%",
         height: "30px",
         borderRadius: "2px",
-        background: `rgba(${targetColor.r}, ${targetColor.g}, ${targetColor.b}, ${targetColor.a})`,
+        background: `${targetColor}`,
       },
       swatch: {
         padding: "5px",

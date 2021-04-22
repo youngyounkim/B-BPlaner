@@ -4,7 +4,7 @@
     "target" :[{ 
         "id": 1,
         "name" : "리엑트 배우기",
-        "color" : "red",
+        "color" : "#ec407a",
         "activitiesCnt": 3,
         "activities" : [
             {
@@ -20,7 +20,7 @@
     {
         "id": 2,
         "name" : "바디 프로필 찍기",
-        "color" : "yellow",
+        "color" : "#ffeb3b",
         "activitiesCnt": 1,
         "activities" : []
     }]

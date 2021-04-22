@@ -14,6 +14,7 @@ function ColorPicker ( {targetColor, handleChangeColor, swatchStyle, colorStyle,
     const handleColorPicker = function () {
       if(callFrom === 'ReadTargetEntry' && displayColorPicker === true) {
         dispatch(changeTargetColor(id, targetColor))
+        console.log(`id ${id}의 targetColor를 ${targetColor}로 변경!`);
       }
         setDisplayColorPicker(!displayColorPicker);
     };

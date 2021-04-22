@@ -20,12 +20,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
 
   const targetName = useState(null);
 
-  // const [targetColor, setTargetColor] = useState({
-  //   r: "241",
-  //   g: "112",
-  //   b: "19",
-  //   a: "1",
-  // });
+  const [targetColor, setTargetColor] = useState(color);
 
   // const handleColorPicker = function () {
   //   if (callFrom === "ReadTargetEntry") {
@@ -33,23 +28,20 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   //   }
   // };
 
-  // const handleChangeColor = function (color) {
-  //   setTargetColor(color.rgb);
-  //   if (!targetInput) {
-  //     targetInput.current.focus();
-  //   }
-  // };
-
-  const handleTarget = function (e) {
-    e.preventDefault();
-    dispatch(
-      addTarget(
-        state.targetCnt,
-        targetName,
-        `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`
-      )
-    );
+  const handleChangeColor = function (color) {
+    setTargetColor(color.hex);
   };
+
+  // const handleTarget = function (e) {
+  //   e.preventDefault();
+  //   dispatch(
+  //     addTarget(
+  //       state.targetCnt,
+  //       targetName,
+  //       `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`
+  //     )
+  //   );
+  // };
 
   const styles = reactCSS({
     default: {
@@ -57,7 +49,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
         width: "100%",
         height: "20px",
         borderRadius: "1px",
-        background: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`,
+        background: `${targetColor}`,
       },
       swatch: {
         padding: "3px",
@@ -76,28 +68,43 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
         border: "1px solid #212121",
         borderRadius: "5px",
       },
+      mainEntry: {
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "#bbdefb",
+        padding: "7px",
+        margin: "3px",
+        border: "1px solid #212121",
+        width: "30%"
+      },
+      textEntry: {
+        marginLeft: "10px"
+      }
     },
   });
 
   return (
     <>
-      <div className="mainEntry">
-        <form onSubmit={handleTarget} className="MainEntryName" key={id}>
+      <div className="mainEntry" style={styles.mainEntry}>
+        {/* <form onSubmit={handleTarget} className="MainEntryName" key={id}>
           {name}
-        </form>
+        </form> */}
         <div className="ColorEntry">
           <ColorPicker
             id={id}
-            targetColor={color}
+            targetColor={targetColor}
             swatchStyle={styles.swatch}
             colorStyle={styles.color}
             popoverStyle={styles.popover}
-            callFrom={"ReadTragetEntry"}
-            // handleChangeColor={handleChangeColor}
+            callFrom={"ReadTargetEntry"}
+            handleChangeColor={handleChangeColor}
           />
         </div>
+        <div className="textEntry" style={styles.textEntry}>
+          {name}
+        </div>
       </div>
-      <div className="SubEntry">{<ReadActivityList id={1} />}</div>
+      {/* <div className="SubEntry">{<ReadActivityList id={id} />}</div> */}
     </>
   );
 };
