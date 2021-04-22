@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, memo } from "react";
 import ReadTargetList from "./ReadTargetList";
 import loadingImg from "../../../images/loading.gif";
 import dummy from "../../../redux/dummy.json";
@@ -32,4 +32,4 @@ function TargetList(props) {
   );
 }
 
-export default TargetList;
+export default memo(TargetList);

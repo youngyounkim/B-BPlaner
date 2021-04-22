@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import ReadTargetEntry from "./ReadTargetEntry";
 
 function ReadTargetList({ target }) {
@@ -14,4 +15,4 @@ function ReadTargetList({ target }) {
   });
 }
 
-export default ReadTargetList;
+export default memo(ReadTargetList);

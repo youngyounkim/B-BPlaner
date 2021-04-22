@@ -109,4 +109,4 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   );
 };
 
-export default ReadTargetEntry;
+export default memo(ReadTargetEntry);

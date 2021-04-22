@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTarget } from "../../../redux/actions/actions";
 import reactCSS from "reactcss";
@@ -104,4 +104,5 @@ function AddTarget() {
   );
 }
 
-export default AddTarget;
+export default memo(AddTarget);
+

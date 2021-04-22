@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, memo } from "react"
 import SetActivityName from '../edit/SetActivityName'
 
 
@@ -47,5 +47,5 @@ function ReadtActivityEntry({ targetId, activityId, name }){
 }
 
 
-export default ReadtActivityEntry
+export default memo(ReadtActivityEntry)
 

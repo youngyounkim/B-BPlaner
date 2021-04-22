@@ -1,4 +1,4 @@
-import React  from "react"
+import React,  { memo } from "react"
 import { useSelector } from "react-redux"
 import ReadActivityEntry from './ReadActivityEntry'
 
@@ -17,4 +17,4 @@ function ReadActivityList({ id }){
     )
 }
 
-export default ReadActivityList
+export default memo(ReadActivityList)
