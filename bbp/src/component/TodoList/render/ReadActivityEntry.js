@@ -5,6 +5,7 @@ import SetActivityName from '../edit/SetActivityName'
 function ReadtActivityEntry({ targetId, activityId, name }){
     
     const [ isClicked, setIsClicked ] = useState(false)
+    
     const Ref = useRef(null)
     const handleClick = () => {
         setIsClicked(true)
@@ -22,9 +23,7 @@ function ReadtActivityEntry({ targetId, activityId, name }){
         }
     }, [])
     
-    const handleSubmitClick = () => {
-        setIsClicked(false)
-    }
+    
 
     return (
         <> 
@@ -34,10 +33,9 @@ function ReadtActivityEntry({ targetId, activityId, name }){
                         targetId = { targetId } 
                         activityId = { activityId } 
                         name = { name }
-                        handleSubmitClick = { handleSubmitClick }
                     />
                 </div>
-                :<div ref = { Ref } onClick = { handleClick }> 
+                :<div ref = { Ref } onDoubleClick = { handleClick }> 
                     { name }
                 </div>
             }

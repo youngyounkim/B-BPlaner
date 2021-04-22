@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useMemo, memo } from "react";
+import React, { memo } from "react";
 import ReadTargetList from "./ReadTargetList";
 import loadingImg from "../../../images/loading.gif";
-import dummy from "../../../redux/dummy.json";
 import AddTarget from "../edit/AddTarget";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 
 
 function TargetList(props) {
@@ -12,9 +11,7 @@ function TargetList(props) {
   const state = useSelector((state) => {
     return state.targetReducer;
   });
-  // useEffect(()=>{
-  //     setTimeout(()=>setTarget(dummy.target),1000)
-  // })
+  
   return (
     <div id="TargetList">
       {state.target === null ? (
@@ -23,7 +20,7 @@ function TargetList(props) {
         </div>
       ) : (
         <div>
-          <ReadTargetList id="ReadTargetList" target={state.target} />{" "}
+          <ReadTargetList id="ReadTargetList" target={state.target} />
           {/* 이후 target prop은 제거 예정. */}
           <AddTarget />
         </div>

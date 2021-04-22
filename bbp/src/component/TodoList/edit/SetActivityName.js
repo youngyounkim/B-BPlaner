@@ -2,26 +2,26 @@ import React, { useEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux";
 import { changeActivityName } from "../../../redux/actions/actions"
 
-function SetActivityName({ targetId, activityId, name, handleSubmitClick }){
+function SetActivityName({ targetId, activityId, name, handleSubmitClick, handleInputChange }){
     const dispatch = useDispatch();
 
     const [ inputValue, setInputValue ] = useState(name)
     const Ref = useRef(null)
-   
-   
+    const inputRef = useRef(inputValue)
+    
     useEffect(()=>{
-        Ref.current.focus()        
+        Ref.current.focus()
+        return ()=>{
+            dispatch(changeActivityName(targetId, activityId, inputRef.current)) 
+        }
     },[])
 
     const handleChangeValue = (e) => {
         setInputValue(e.target.value)
+        inputRef.current = e.target.value
+
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(changeActivityName(targetId, activityId, inputValue))
-        handleSubmitClick()
-    }
     return (
         <form>
             <input 
@@ -29,7 +29,6 @@ function SetActivityName({ targetId, activityId, name, handleSubmitClick }){
                 value = { inputValue} 
                 onChange = { handleChangeValue }>
             </input>
-            <button type = 'submit' onClick = { handleSubmit }>확인</button>
         </form>
         
     )
