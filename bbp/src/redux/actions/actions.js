@@ -3,6 +3,7 @@ export const ADD_ACTIVITY = "ADD_ACTIVITY";
 export const CHANGE_ACTIVITY_NAME = "CHANGE_ACTIVITY_NAME"
 export const CHANGE_TARGET_COLOR = "CHANGE_TARGET_COLOR"; // ReadTargetEntry 에서 목표색 바꿈기능 - 제천
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY"
+export const CHANGE_TARGET_NAME = "CHANGE_TARGET_NAME"; // ReadTargetEntry 에서 목표 이름 변경 - 제천
 
 export const addTarget = (targetCnt, name, color, activitiesCnt=1, activities=[]) => {
     return {
@@ -33,6 +34,16 @@ export const changeActivityName = (targetId, activityId, inputValue) => {
         payload : {
             targetId,
             activityId,
+            inputValue
+        }
+    }
+}
+
+export const changeTargetName = (targetId, inputValue) => {
+    return {
+        type : CHANGE_TARGET_NAME,
+        payload : {
+            targetId,
             inputValue
         }
     }

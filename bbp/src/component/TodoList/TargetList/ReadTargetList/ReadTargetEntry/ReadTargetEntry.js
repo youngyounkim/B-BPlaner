@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CirclePicker } from "react-color";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -8,6 +8,7 @@ import {
 import ColorPicker from "../../ColorPicker";
 import reactCSS from "reactcss";
 import ReadActivityList from "../ReadTargetEntry/ReadActivityList/ReadActivityList";
+import SetTargetName from './SetTargetName';
 
 // 테스트 /////////////////////////////////////////////////////////
 
@@ -19,8 +20,27 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   // const targetInput = useRef();
 
   const targetName = useState(null);
-
+  const targetNameInput = useRef(); //제천
+  const [ isClicked, setIsClicked ] = useState(false) //제천
   const [targetColor, setTargetColor] = useState(color);
+  const handleClick = () => {
+    setIsClicked(true)
+  }
+  const handleSubmitClick = () => {
+    setIsClicked(false)
+  }
+
+  useEffect( () => {
+    const handleClick = (e)=>{
+        if(targetNameInput.current && !targetNameInput.current.contains(e.target)){
+            setIsClicked(false)
+        }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => {
+        document.removeEventListener("mousedown", handleClick);
+    }
+}, [])
 
   // const handleColorPicker = function () {
   //   if (callFrom === "ReadTargetEntry") {
@@ -79,6 +99,13 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
       },
       textEntry: {
         marginLeft: "10px"
+      },
+      subEntry: {
+        backgroundColor: "#efebe9",
+        width: "30%",
+        border: "1px solid #212121",
+        margin: "0 0 3px 20px",
+        padding: "5px"
       }
     },
   });
@@ -100,11 +127,23 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
             handleChangeColor={handleChangeColor}
           />
         </div>
-        <div className="textEntry" style={styles.textEntry}>
+        {isClicked 
+                ? <div ref = { targetNameInput }>
+                    < SetTargetName 
+                        targetId = { id }
+                        name = { name }
+                        handleSubmitClick = { handleSubmitClick }
+                    />
+                </div>
+                :<div className="textEntry" style={styles.textEntry} ref = { targetNameInput } onClick = { handleClick }> 
+                    { name }
+                </div>
+        }
+        {/* <div className="textEntry" style={styles.textEntry}>
           {name}
-        </div>
+        </div> */}
       </div>
-      {/* <div className="SubEntry">{<ReadActivityList id={id} />}</div> */}
+      <div className="SubEntry" style={styles.subEntry}>{<ReadActivityList id={id} />}</div>
     </>
   );
 };
