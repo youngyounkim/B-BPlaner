@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTarget } from "../../../redux/actions/actions";
 import reactCSS from "reactcss";
-import ColorPicker from './ColorPicker';
+import ColorPicker from '../module/ColorPicker';
 
 function AddTarget() {
   const state = useSelector((state) => {

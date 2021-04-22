@@ -1,13 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, memo } from "react";
 import { CirclePicker } from "react-color";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeTargetColor,
   addTarget,
-} from "../../../../../redux/actions/actions";
-import ColorPicker from "../../ColorPicker";
+} from "../../../redux/actions/actions";
+import ColorPicker from "../module/ColorPicker";
 import reactCSS from "reactcss";
-import ReadActivityList from "../ReadTargetEntry/ReadActivityList/ReadActivityList";
+import ReadActivityList from "./ReadActivityList";
 
 // 테스트 /////////////////////////////////////////////////////////
 
@@ -82,7 +82,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
       }
     },
   });
-
+  
   return (
     <>
       <div className="mainEntry" style={styles.mainEntry}>
@@ -104,7 +104,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
           {name}
         </div>
       </div>
-      {/* <div className="SubEntry">{<ReadActivityList id={id} />}</div> */}
+      <div className="SubEntry">{<ReadActivityList id={id} />}</div>
     </>
   );
 };

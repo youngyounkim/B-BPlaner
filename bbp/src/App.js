@@ -1,7 +1,7 @@
 import "./App.css";
 import { SketchPicker } from "react-color";
 
-import TargetList from "./component/TodoList/TargetList/TargetList"; // 테스트용 입니다. - 민석
+import TargetList from "./component/TodoList/render/TargetList"; // 테스트용 입니다. - 민석
 
 function App() {
   return (

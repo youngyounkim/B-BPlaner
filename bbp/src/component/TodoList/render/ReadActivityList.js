@@ -7,7 +7,6 @@ import ReadActivityEntry from './ReadActivityEntry'
 function ReadActivityList({ id }){
     const activities = useSelector( state => state.targetReducer )
         .target.filter( target => target.id === id)[0].activities
-    
     return activities.map( activity => 
             <ReadActivityEntry 
                     key = { activity.id } 

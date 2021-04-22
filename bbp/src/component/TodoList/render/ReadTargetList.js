@@ -1,4 +1,4 @@
-import ReadTargetEntry from "./ReadTargetEntry/ReadTargetEntry";
+import ReadTargetEntry from "./ReadTargetEntry";
 
 function ReadTargetList({ target }) {
   return target.map((el) => {

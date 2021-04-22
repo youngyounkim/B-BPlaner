@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import SetActivityName from './SetActivityName'
+import SetActivityName from '../edit/SetActivityName'
 
 
 function ReadtActivityEntry({ targetId, activityId, name }){

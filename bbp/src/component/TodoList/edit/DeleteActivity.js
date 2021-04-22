@@ -1,7 +1,6 @@
 import React from 'react'
-import { deleteActivity } from '../../../../../redux/actions'
 import { useDispatch } from "react-redux";
-
+import { deleteActivity } from '../../../redux/actions/actions'
 
 function DeleteActivity ({TargetId, ActivityId}) {
     const dispatch = useDispatch();
