@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux";
 import { changeActivityName } from "../../../redux/actions/actions"
 
-function SetActivityName({ targetId, activityId, name }){
+function SetActivityName({ targetId, activityId, name, handlePressEnter }){
     const dispatch = useDispatch();
 
     const [ inputValue, setInputValue ] = useState(name)
@@ -21,9 +21,12 @@ function SetActivityName({ targetId, activityId, name }){
         inputRef.current = e.target.value
 
     }
+    
     const preventPressEnter = (e) => {
         if(e.key === 'Enter'){
             e.preventDefault()
+            dispatch(changeActivityName(targetId, activityId, inputRef.current))
+            handlePressEnter()
         }
     }
 

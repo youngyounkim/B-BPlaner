@@ -7,9 +7,7 @@ function ReadtActivityEntry({ targetId, activityId, name }){
     const [ isClicked, setIsClicked ] = useState(false)
     
     const Ref = useRef(null)
-    const handleClick = () => {
-        setIsClicked(true)
-    }
+   
     
     useEffect( () => {
         const handleClick = (e)=>{
@@ -22,8 +20,13 @@ function ReadtActivityEntry({ targetId, activityId, name }){
             document.removeEventListener("mousedown", handleClick);
         }
     }, [])
-    
-    
+
+    const handleClick = () => {
+        setIsClicked(true)
+    }
+    const handlePressEnter = () => {
+        setIsClicked(false)
+    }
 
     return (
         <> 
@@ -33,6 +36,7 @@ function ReadtActivityEntry({ targetId, activityId, name }){
                         targetId = { targetId } 
                         activityId = { activityId } 
                         name = { name }
+                        handlePressEnter = { handlePressEnter }
                     />
                 </div>
                 :<div ref = { Ref } onDoubleClick = { handleClick }> 
