@@ -135,7 +135,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
                         handleSubmitClick = { handleSubmitClick }
                     />
                 </div>
-                :<div className="textEntry" style={styles.textEntry} ref = { targetNameInput } onClick = { handleClick }> 
+                :<div className="textEntry" style={styles.textEntry} ref = { targetNameInput } onDoubleClick = { handleClick }> 
                     { name }
                 </div>
         }
