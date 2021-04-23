@@ -1,58 +1,99 @@
-import dummy from "../dummy.json"
-import { ADD_TARGET, ADD_ACTIVITY, CHANGE_TARGET_COLOR, DELETE_ACTIVITY, CHANGE_ACTIVITY_NAME, CHANGE_TARGET_NAME } from "../actions/actions"
+import dummy from "../dummy.json";
+import {
+  ADD_TARGET,
+  ADD_ACTIVITY,
+  CHANGE_TARGET_COLOR,
+  DELETE_ACTIVITY,
+  CHANGE_ACTIVITY_NAME,
+  CHANGE_TARGET_NAME,
+  DELETE_TARGET,
+} from "../actions/actions";
 
+const targetReducer = (state = dummy, action) => {
+  switch (action.type) {
+    case ADD_TARGET:
+      return Object.assign({}, state, {
+        targetCnt: state.targetCnt + 1,
+        target: [...state.target, action.payload],
+      });
 
-const targetReducer = (state = dummy ,action) => {
-
-    switch ( action.type ) {
-        case ADD_TARGET :
-            return Object.assign({}, state, {
-                targetCnt: state.targetCnt + 1,
-                target: [...state.target, action.payload]
-            });
-        
-            case ADD_ACTIVITY :
-            let obj = {...state, target : [...state.target.map((el)=>{
-                if(el.id === action.payload.id){
-                    el.activities = [...el.activities, { id : el.activitiesCnt, name : action.payload.name}]
-                    el.activitiesCnt++
-                    return el;
-                }
-                return el;
-            })]}
-            return obj
-
-        case CHANGE_ACTIVITY_NAME :
-            const { targetId, activityId, inputValue } = action.payload
-            return {
-                ...state,
-                target : state.target.map(target => { 
-                    if(target.id === targetId){
-                        target.activities = target.activities.map(activity => {
-                            if(activity.id === activityId){
-                                activity = { ...activity, name : inputValue }
-                            } 
-                            return activity
-                        })
-                    } 
-                    return target    
-                })
+    case ADD_ACTIVITY:
+      let obj = {
+        ...state,
+        target: [
+          ...state.target.map((el) => {
+            if (el.id === action.payload.id) {
+              el.activities = [
+                ...el.activities,
+                { id: el.activitiesCnt, name: action.payload.name },
+              ];
+              el.activitiesCnt++;
+              return el;
             }
+            return el;
+          }),
+        ],
+      };
+      return obj;
 
-        case DELETE_ACTIVITY : 
-            return {...state, target : [...state.target.map((el)=>{
-                if(el.id === action.payload.targetId){
-                    el.activities = el.activities.filter((el)=>{
-                        if(el.id === action.payload.id){
-                            return false
-                        } else {
-                            return true;
-                        }
-                    })
-                    return el;
-                } 
+    case DELETE_TARGET:
+      console.log("targetCnt은 ", state.targetCnt);
+      const nextState = state.target.filter(
+        (el) => el.id !== action.payload.id
+      );
+      console.log("nextState는 ", nextState);
+      return { ...state, target: nextState };
+
+      case DELETE_ACTIVITY:
+        return {
+          ...state,
+          target: [
+            ...state.target.map((el) => {
+              if (el.id === action.payload.targetId) {
+                el.activities = el.activities.filter((el) => {
+                  if (el.id === action.payload.id) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                });
                 return el;
-            })]}
+              }
+              return el;
+            }),
+          ],
+        };
+
+        case CHANGE_TARGET_NAME :
+          return Object.assign({}, state, {
+              target : state.target.map(el => {
+                  if(el.id === action.payload.targetId) {
+                      el.name = action.payload.inputValue;
+                  }
+                  return el;
+              })
+          })
+
+    case CHANGE_ACTIVITY_NAME:
+      const { targetId, activityId, inputValue } = action.payload;
+      return {
+        ...state,
+        target: state.target.map((target) => {
+          if (target.id === targetId) {
+            target.activities = target.activities.map((activity) => {
+              if (activity.id === activityId) {
+                activity = { ...activity, name: inputValue };
+              }
+              return activity;
+            });
+          }
+          return target;
+        }),
+      };
+
+
+
+
 
         case CHANGE_TARGET_COLOR :
             let idx = state.target.findIndex(el => el.id === action.payload.id)
@@ -62,19 +103,11 @@ const targetReducer = (state = dummy ,action) => {
                 target: copiedTargets
             });
         
-        case CHANGE_TARGET_NAME :
-            return Object.assign({}, state, {
-                target : state.target.map(el => {
-                    if(el.id === action.payload.targetId) {
-                        el.name = action.payload.inputValue;
-                    }
-                    return el;
-                })
-            })
+
 
         default:
             return state
     }
 }
 
-export default targetReducer
+export default targetReducer;

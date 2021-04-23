@@ -4,11 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   changeTargetColor,
   addTarget,
+  addActivity,
+  deleteTarget,
 } from "../../../../../redux/actions/actions";
 import ColorPicker from "../../ColorPicker";
 import reactCSS from "reactcss";
 import ReadActivityList from "../ReadTargetEntry/ReadActivityList/ReadActivityList";
 import SetTargetName from './SetTargetName';
+import AddActivity from "./AddActivity";
 
 // 테스트 /////////////////////////////////////////////////////////
 
@@ -16,6 +19,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   const state = useSelector((state) => {
     return state.targetReducer;
   });
+
   const dispatch = useDispatch();
   // const targetInput = useRef();
 
@@ -42,26 +46,15 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
     }
 }, [])
 
-  // const handleColorPicker = function () {
-  //   if (callFrom === "ReadTargetEntry") {
-  //     dispatch(changeTargetColor(id, targetColor));
-  //   }
-  // };
-
   const handleChangeColor = function (color) {
     setTargetColor(color.hex);
   };
 
-  // const handleTarget = function (e) {
-  //   e.preventDefault();
-  //   dispatch(
-  //     addTarget(
-  //       state.targetCnt,
-  //       targetName,
-  //       `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`
-  //     )
-  //   );
-  // };
+  const handleDeleteTodo = (id) => {
+    // e.preventDefault();
+    console.log("삭제", id);
+    dispatch(deleteTarget(id));
+  };
 
   const styles = reactCSS({
     default: {
@@ -90,61 +83,89 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
       },
       mainEntry: {
         display: "flex",
+        flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#bbdefb",
         padding: "7px",
         margin: "3px",
         border: "1px solid #212121",
-        width: "30%"
+        width: "30%",
       },
       textEntry: {
         marginLeft: "10px"
       },
-      subEntry: {
-        backgroundColor: "#efebe9",
+      // subEntry: {
+      //   backgroundColor: "#efebe9",
+      //   width: "30%",
+      //   border: "1px solid #212121",
+      //   margin: "0 0 3px 20px",
+      //   padding: "5px",
+      //   marginLeft: "10px",
+      // },
+      delBtn: {
+        display: "flex",
+        float: "right",
+        alignItems: "flex-end",
+        marginLeft: "10px"
+      },
+      subEntryList: {
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#cfd8dc",
         width: "30%",
-        border: "1px solid #212121",
-        margin: "0 0 3px 20px",
-        padding: "5px"
-      }
+        margin: "3px 3px 3px 9px",
+      },
+      subEntry: {
+        display: "flex",
+        flexDirection: "column",
+      },
+      addSubEntry: {
+        display: "flex",
+      },
     },
   });
 
   return (
-    <>
-      <div className="mainEntry" style={styles.mainEntry}>
-        {/* <form onSubmit={handleTarget} className="MainEntryName" key={id}>
-          {name}
-        </form> */}
-        <div className="ColorEntry">
-          <ColorPicker
-            id={id}
-            targetColor={targetColor}
-            swatchStyle={styles.swatch}
-            colorStyle={styles.color}
-            popoverStyle={styles.popover}
-            callFrom={"ReadTargetEntry"}
-            handleChangeColor={handleChangeColor}
-          />
-        </div>
-        {isClicked 
-                ? <div ref = { targetNameInput }>
-                    < SetTargetName 
-                        targetId = { id }
-                        name = { name }
-                        handleSubmitClick = { handleSubmitClick }
-                    />
-                </div>
-                :<div className="textEntry" style={styles.textEntry} ref = { targetNameInput } onDoubleClick = { handleClick }> 
-                    { name }
-                </div>
-        }
-        {/* <div className="textEntry" style={styles.textEntry}>
-          {name}
-        </div> */}
+      <div className="Entry">
+        <div className="mainEntry" style={styles.mainEntry}>
+          <div className="ColorEntry">
+            <ColorPicker
+              id={id}
+              targetColor={targetColor}
+              swatchStyle={styles.swatch}
+              colorStyle={styles.color}
+              popoverStyle={styles.popover}
+              callFrom={"ReadTargetEntry"}
+              handleChangeColor={handleChangeColor}
+            />
+          </div>
+          {isClicked 
+            ? <div ref = { targetNameInput }>
+                < SetTargetName 
+                    targetId = { id }
+                    name = { name }
+                    handleSubmitClick = { handleSubmitClick }
+                />
+              </div>
+            :<div className="textEntry" style={styles.textEntry} ref = { targetNameInput } onDoubleClick = { handleClick }> 
+                { name }
+            </div>
+          }
+          <button className="delBtn" style={styles.delBtn} onClick={() => handleDeleteTodo(id)}>
+            삭제
+          </button>
+        </div>   
+        {/* <div className="SubEntry" style={styles.subEntry}>{<ReadActivityList id={id} />} */}
+          <div className="subEntryList" style={styles.subEntryList}>
+            <div className="subEntry" style={styles.subEntry}>
+              {<ReadActivityList id={id} />}
+            </div>
+            <div className="addSubEntry" style={styles.addSubEntry}>
+              {<AddActivity id={id} />}
+            </div>
+          </div>
+
       </div>
-      <div className="SubEntry" style={styles.subEntry}>{<ReadActivityList id={id} />}</div>
-    </>
   );
 };
 
