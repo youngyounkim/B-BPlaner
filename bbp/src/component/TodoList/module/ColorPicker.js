@@ -12,8 +12,9 @@ function ColorPicker ( {targetColor, handleChangeColor, swatchStyle, colorStyle,
 
     useEffect( () => {
       console.log('targetColor in useEffect: ',targetColor)
-      // dispatch(changeTargetColor(id, targetColor));
+      // dispatch(changeTargetColor(id, targetColor)); // TODO 이부분 해결필요!
       console.log(`id ${id}의 targetColor를 ${targetColor}로 변경!`);
+      console.log('변경된 state.target: ',state.target);
     },[targetColor])
 
     const handleColorPicker = function () {
