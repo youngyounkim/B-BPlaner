@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addActivity } from "../../../redux/actions/actions";
 
@@ -26,4 +26,4 @@ function AddActivity({ id }) {
     </form>
   );
 }
-export default AddActivity;
+export default memo(AddActivity);
