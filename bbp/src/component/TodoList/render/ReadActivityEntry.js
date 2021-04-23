@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useRef } from "react"
-import SetActivityName from './SetActivityName'
+import React, { useEffect, useState, useRef, memo } from "react"
+import SetActivityName from '../edit/SetActivityName'
 
 
 function ReadtActivityEntry({ targetId, activityId, name }){
     
     const [ isClicked, setIsClicked ] = useState(false)
+    
     const Ref = useRef(null)
-    const handleClick = () => {
-        setIsClicked(true)
-    }
+   
     
     useEffect( () => {
         const handleClick = (e)=>{
@@ -21,8 +20,11 @@ function ReadtActivityEntry({ targetId, activityId, name }){
             document.removeEventListener("mousedown", handleClick);
         }
     }, [])
-    
-    const handleSubmitClick = () => {
+
+    const handleClick = () => {
+        setIsClicked(true)
+    }
+    const handlePressEnter = () => {
         setIsClicked(false)
     }
 
@@ -34,10 +36,10 @@ function ReadtActivityEntry({ targetId, activityId, name }){
                         targetId = { targetId } 
                         activityId = { activityId } 
                         name = { name }
-                        handleSubmitClick = { handleSubmitClick }
+                        handlePressEnter = { handlePressEnter }
                     />
                 </div>
-                :<div ref = { Ref } onClick = { handleClick }> 
+                :<div ref = { Ref } onDoubleClick = { handleClick }> 
                     { name }
                 </div>
             }
@@ -47,5 +49,5 @@ function ReadtActivityEntry({ targetId, activityId, name }){
 }
 
 
-export default ReadtActivityEntry
+export default memo(ReadtActivityEntry)
 

@@ -1,17 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import { CirclePicker } from "react-color";
+import { useState, useRef, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeTargetColor,
   addTarget,
   addActivity,
   deleteTarget,
-} from "../../../../../redux/actions/actions";
-import ColorPicker from "../../ColorPicker";
+} from "../../../redux/actions/actions";
 import reactCSS from "reactcss";
-import ReadActivityList from "../ReadTargetEntry/ReadActivityList/ReadActivityList";
-import SetTargetName from './SetTargetName';
-import AddActivity from "./AddActivity";
+import SetTargetName from '../edit/SetTargetName';
+import AddActivity from "../edit/AddActivity";
+import ColorPicker from "../module/ColorPicker";
+import ReadActivityList from "./ReadActivityList";
 
 // 테스트 /////////////////////////////////////////////////////////
 
@@ -19,7 +18,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   const state = useSelector((state) => {
     return state.targetReducer;
   });
-
+  
   const dispatch = useDispatch();
   // const targetInput = useRef();
 
@@ -124,7 +123,7 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
       },
     },
   });
-
+  
   return (
       <div className="Entry">
         <div className="mainEntry" style={styles.mainEntry}>
@@ -169,4 +168,4 @@ const ReadTargetEntry = ({ id, name, color, activities }) => {
   );
 };
 
-export default ReadTargetEntry;
+export default memo(ReadTargetEntry);

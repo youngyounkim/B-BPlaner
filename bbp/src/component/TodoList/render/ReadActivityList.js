@@ -1,4 +1,4 @@
-import React  from "react"
+import React,  { memo } from "react"
 import { useSelector } from "react-redux"
 import ReadActivityEntry from './ReadActivityEntry'
 
@@ -7,7 +7,6 @@ import ReadActivityEntry from './ReadActivityEntry'
 function ReadActivityList({ id }){
     const activities = useSelector( state => state.targetReducer )
         .target.filter( target => target.id === id)[0].activities
-    
     return activities.map( activity => 
             <ReadActivityEntry 
                     key = { activity.id } 
@@ -18,4 +17,4 @@ function ReadActivityList({ id }){
     )
 }
 
-export default ReadActivityList
+export default memo(ReadActivityList)

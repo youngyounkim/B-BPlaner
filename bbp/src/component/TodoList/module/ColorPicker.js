@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import { CirclePicker} from 'react-color'
 import { useSelector, useDispatch } from "react-redux";
 import { changeTargetColor } from "../../../redux/actions/actions";
@@ -38,4 +38,4 @@ function ColorPicker ( {targetColor, handleChangeColor, swatchStyle, colorStyle,
     )
 }
 
-export default ColorPicker;
+export default memo(ColorPicker);

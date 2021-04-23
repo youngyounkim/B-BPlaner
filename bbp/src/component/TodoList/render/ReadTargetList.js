@@ -1,4 +1,5 @@
-import ReadTargetEntry from "./ReadTargetEntry/ReadTargetEntry";
+import { memo } from 'react'
+import ReadTargetEntry from "./ReadTargetEntry";
 
 function ReadTargetList({ target }) {
   return target.map((el) => {
@@ -14,4 +15,4 @@ function ReadTargetList({ target }) {
   });
 }
 
-export default ReadTargetList;
+export default memo(ReadTargetList);

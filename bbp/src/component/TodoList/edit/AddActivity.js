@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addActivity } from "../../../../../redux/actions/actions";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addActivity } from "../../../redux/actions/actions";
 
 function AddActivity({ id }) {
   const dispatch = useDispatch();
